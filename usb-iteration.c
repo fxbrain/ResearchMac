@@ -143,7 +143,7 @@ const char* CFStringCopyUTF8String(CFStringRef aString)
 
     CFIndex length = CFStringGetLength(aString);
     CFIndex maxSize = CFStringGetMaximumSizeForEncoding(length, kCFStringEncodingUTF8)+1;
-    char* buffer = (char*) malloc(maxSize);
+    char* buffer = (char*) malloc((size_t) maxSize);
 
     if (CFStringGetCString(aString, buffer, maxSize, kCFStringEncodingUTF8)) {
         return buffer;
@@ -424,8 +424,8 @@ int main(int argc, char **argv)
 {
     char path[MAXPATHLEN];
     listDevices();
-    checkDeviceState(0x05ac, 0x8290);
-    getDeviceFilePath(0x05ac, 0x8290, path);
+    checkDeviceState(0x05ac, 0x8006);
+    getDeviceFilePath(0x05ac, 0x8006, path);
     fprintf(stdout, "Device Path : %s\n", path);
     return EXIT_SUCCESS;
 }
